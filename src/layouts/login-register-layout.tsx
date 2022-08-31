@@ -12,12 +12,12 @@ const LoginRegLayout: FC<LoginRegLayoutProp> = ({ children }) => {
       alignItems="center"
     >
       <Flex
-        w="28%"
-        h="70%"
+        w="520px"
+        h="660px"
         bgColor="#A6C3DD" //"#7fa8cf"
         borderStyle="solid"
         borderWidth="3px"
-        borderColor="#404D64" //"#576987"//
+        borderColor="#2C3644" //"#404D64" //"#576987"//
         borderRadius="20px"
         justifyContent="center"
         alignItems="center"
