@@ -1,3 +1,3 @@
-interface LoginLayoutProp {
+interface LoginRegLayoutProp {
     children: React.ReactNode;
 }

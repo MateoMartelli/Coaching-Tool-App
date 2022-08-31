@@ -1,12 +1,24 @@
 import { NextPage } from "next";
-import { Flex } from "@chakra-ui/react";
-import LoginLayout from "../layouts/login-layout";
+import { FC } from "react";
+import {
+  Flex,
+  Input,
+  FormControl,
+  Button,
+  Spinner,
+  FormErrorMessage,
+  Text,
+  Link,
+} from "@chakra-ui/react";
+import { Formik, Field, Form, FieldProps } from "formik";
+import LoginForm from "../components/login-form";
+import LoginRegLayout from "../layouts/login-register-layout";
 
 const LogIn: NextPage = () => {
   return (
-    <LoginLayout>
-      <Flex></Flex>
-    </LoginLayout>
+    <LoginRegLayout>
+      <LoginForm />
+    </LoginRegLayout>
   );
 };
 
