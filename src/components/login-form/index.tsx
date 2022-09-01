@@ -10,6 +10,7 @@ import {
   FormErrorMessage,
   Text,
   Link,
+  FormLabel,
 } from "@chakra-ui/react";
 import LoginRegLayout from "../../layouts/login-register-layout";
 
@@ -27,18 +28,20 @@ const LoginForm: FC = ({}) => {
       {({ errors, touched }) => (
         <Form autoComplete="off">
           <Flex
-            w="385px"
-            h="530px"
+            // w="385px"
+            // h="530px"
             // bgColor="white"
             alignItems="center"
             paddingTop="40px"
             flexDir="column"
             gap="20px"
+            p="1rem"
           >
             <Image
               src="/CH_logo_Black_Frost2.png"
               height="120px"
               width="120px"
+              alt="logo"
             ></Image>
             <Text
               textAlign="center"
@@ -52,10 +55,9 @@ const LoginForm: FC = ({}) => {
             <Field name="email">
               {({ field }: FieldProps) => (
                 <FormControl
-                  display="flex"
-                  justifyContent="center"
                   isInvalid={"email" in errors && "email" in touched}
                 >
+                  <FormLabel>Email</FormLabel>
                   <Input
                     {...field}
                     borderColor="#E3F0F2"
@@ -69,10 +71,9 @@ const LoginForm: FC = ({}) => {
             <Field name="password">
               {({ field }: FieldProps) => (
                 <FormControl
-                  display="flex"
-                  justifyContent="center"
                   isInvalid={"password" in errors && "password" in touched}
                 >
+                  <FormLabel>Password</FormLabel>
                   <Input
                     {...field}
                     borderColor="#E3F0F2"
@@ -93,6 +94,8 @@ const LoginForm: FC = ({}) => {
                 color="#E3f0f2"
                 w="260px"
                 borderRadius="40px"
+                mb="1rem"
+                type="submit"
                 _hover={{
                   color: "#2c3644",
                   bgColor: "#E3F0F2",

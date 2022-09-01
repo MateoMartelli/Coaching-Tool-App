@@ -1,4 +1,4 @@
-import React, { FC /* useState */ } from "react";
+import { FC /* useState */ } from "react";
 import Image from "next/image";
 import { Box, Flex } from "@chakra-ui/react";
 
@@ -6,14 +6,15 @@ const LoginRegLayout: FC<LoginRegLayoutProp> = ({ children }) => {
   return (
     <Flex
       w="100%"
-      h="100vh"
+      minH="100vh"
       bgColor="#E3F0F2" //"#C6E1E4"
       justifyContent="center"
       alignItems="center"
     >
       <Flex
-        w="520px"
-        h="660px"
+        // w="520px"
+        // h="660px"
+        h="100%"
         bgColor="#A6C3DD" //"#7fa8cf"
         borderStyle="solid"
         borderWidth="3px"

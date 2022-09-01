@@ -2,7 +2,7 @@ import "../../styles/globals.css";
 import type { AppProps } from "next/app";
 import * as React from "react";
 import { ChakraProvider } from "@chakra-ui/react";
-import globalStyle from "../../utilis/globalstyles";
+import globalStyle from "../utilis/globalstyles";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
