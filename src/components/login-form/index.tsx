@@ -102,12 +102,12 @@ const LoginForm: FC = ({}) => {
                   <FormLabel>Email</FormLabel>
                   <Input
                     {...field}
-                    borderColor="#E3F0F2"
+                    borderColor="lightMode.snowBG1"
                     w="350px"
                     type="email"
                     _focus={{
-                      borderColor: "#2c3644",
-                      shadow: "1px 0.5px 3.5px #2c3644",
+                      borderColor: "lightMode.trueIce1",
+                      shadow: "1px 0.5px 3.5px lightMode.trueIce1",
                     }}
                   />
                   <FormErrorMessage>{errors.email}</FormErrorMessage>
@@ -123,12 +123,12 @@ const LoginForm: FC = ({}) => {
                   <InputGroup>
                     <Input
                       {...field}
-                      borderColor="#E3F0F2"
+                      borderColor="lightMode.snowBG1"
                       w="350px"
                       type={show ? "text" : "password"}
                       _focus={{
-                        borderColor: "#2c3644",
-                        shadow: "1px 0.5px 3.5px #2c3644",
+                        borderColor: "trueIce1",
+                        shadow: "1px 0.5px 3.5px lightMode.trueIce1",
                       }}
                     />
                     <InputRightElement width="4.5rem">
@@ -147,15 +147,15 @@ const LoginForm: FC = ({}) => {
               justifyContent="center"
             >
               <Button
-                bgColor="#2c3644"
-                color="#E3f0f2"
+                bgColor="lightMode.trueIce1"
+                color="lightMode.snowBG1"
                 w="260px"
                 borderRadius="40px"
                 mb="1rem"
                 type="submit"
                 _hover={{
-                  color: "#2c3644",
-                  bgColor: "#E3F0F2",
+                  color: "lightMode.trueIce1",
+                  bgColor: "lightMode.snowBG1",
                   opacity: "0.75",
                 }}
                 _active={{ opacity: "1" }}

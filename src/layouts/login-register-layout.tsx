@@ -7,7 +7,7 @@ const LoginRegLayout: FC<LoginRegLayoutProp> = ({ children }) => {
     <Flex
       w="100%"
       minH="100vh"
-      bgColor="#E3F0F2" //"#C6E1E4"
+      bgColor="lightMode.snowBG1"
       justifyContent="center"
       alignItems="center"
     >
@@ -15,10 +15,10 @@ const LoginRegLayout: FC<LoginRegLayoutProp> = ({ children }) => {
         // w="520px"
         // h="660px"
         h="100%"
-        bgColor="#A6C3DD" //"#7fa8cf"
+        bgColor="lightMode.lightBlue1"
         borderStyle="solid"
         borderWidth="3px"
-        borderColor="#2C3644" //"#404D64" //"#576987"//
+        borderColor="lightMode.trueIce1"
         borderRadius="20px"
         justifyContent="center"
         alignItems="center"
