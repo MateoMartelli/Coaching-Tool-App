@@ -1,6 +1,7 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
+import { gql, useMutation } from "@apollo/client";
 import { Formik, Field, Form, FieldProps } from "formik";
-import Image from "next/image";
+import * as Yup from "yup";
 import {
   Input,
   Flex,
@@ -11,7 +12,10 @@ import {
   Text,
   Link,
   FormLabel,
+  InputGroup,
+  InputRightElement,
 } from "@chakra-ui/react";
+import Image from "next/image";
 import LoginRegLayout from "../../layouts/login-register-layout";
 
 const initialValues = {
@@ -19,11 +23,49 @@ const initialValues = {
   password: "",
 };
 
+const loginSchema = Yup.object().shape({
+  email: Yup.string().required("Carga un email k-po"),
+  password: Yup.string().required("Y que te pensas que va aca?"),
+});
+
+const LOGIN = gql`
+  mutation Login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      token {
+        jwt
+        expiresIn
+      }
+      user {
+        id
+      }
+    }
+  }
+`;
+
 const LoginForm: FC = ({}) => {
+  const [show, setShow] = useState(false);
+
+  const [login, { data, loading, error }] = useMutation(LOGIN);
+
+  const handleClick = () => setShow(!show);
+
+  useEffect(() => {
+    if (!loading) {
+      if (data !== undefined) {
+        console.log(data.login.token.jwt);
+      } else if (error) {
+        console.log(error);
+      }
+    }
+  }, [data, loading, error]);
+
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={(values) => console.log(values)}
+      onSubmit={(values) =>
+        login({ variables: { email: values.email, password: values.password } })
+      }
+      validationSchema={loginSchema}
     >
       {({ errors, touched }) => (
         <Form autoComplete="off">
@@ -63,7 +105,11 @@ const LoginForm: FC = ({}) => {
                     borderColor="#E3F0F2"
                     w="350px"
                     type="email"
-                  ></Input>
+                    _focus={{
+                      borderColor: "#2c3644",
+                      shadow: "1px 0.5px 3.5px #2c3644",
+                    }}
+                  />
                   <FormErrorMessage>{errors.email}</FormErrorMessage>
                 </FormControl>
               )}
@@ -74,12 +120,23 @@ const LoginForm: FC = ({}) => {
                   isInvalid={"password" in errors && "password" in touched}
                 >
                   <FormLabel>Password</FormLabel>
-                  <Input
-                    {...field}
-                    borderColor="#E3F0F2"
-                    w="350px"
-                    type="password"
-                  ></Input>
+                  <InputGroup>
+                    <Input
+                      {...field}
+                      borderColor="#E3F0F2"
+                      w="350px"
+                      type={show ? "text" : "password"}
+                      _focus={{
+                        borderColor: "#2c3644",
+                        shadow: "1px 0.5px 3.5px #2c3644",
+                      }}
+                    />
+                    <InputRightElement width="4.5rem">
+                      <Button h="1.75rem" size="sm" onClick={handleClick}>
+                        {show ? "Hide" : "Show"}
+                      </Button>
+                    </InputRightElement>
+                  </InputGroup>
                   <FormErrorMessage>{errors.password}</FormErrorMessage>
                 </FormControl>
               )}
