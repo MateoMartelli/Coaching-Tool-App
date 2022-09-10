@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { Formik, Field, Form, FieldProps } from "formik";
 import LoginForm from "../components/login-form";
-import LoginRegLayout from "../layouts/login-register-layout";
+import LoginRegLayout from "../layouts/login-register-layouts";
 
 const LogIn: NextPage = () => {
   return (

@@ -7,14 +7,14 @@ const Header: FC<Header> = () => {
   return (
     <Flex w="100%" h="7.5rem" justifyContent="center" alignItems="center">
       <Flex
-        w="95%"
-        h="90%"
+        w="100%"
+        h="100%"
+        borderRadius="0 0 2rem 2rem"
         bgColor="lightMode.lightBlue1"
         color="white"
-        borderRadius="1rem"
         justify="space-between"
         align="center"
-        paddingInline="2rem"
+        paddingInline="1.3rem"
       >
         <Flex cursor="pointer" opacity="0.9" _hover={{ opacity: "1" }}>
           <Image
@@ -23,7 +23,9 @@ const Header: FC<Header> = () => {
             width="90px"
           ></Image>
         </Flex>
-        <Flex>Coaching Helper</Flex>
+        <Flex>
+          <Text>Coaching Helper</Text>
+        </Flex>
         <Flex
           w="4.8rem"
           h="4.8rem"
