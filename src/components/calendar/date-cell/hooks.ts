@@ -64,8 +64,8 @@ const useDateCell = (
   const cellColor = !firstTask
     ? "transparent"
     : isPostCurrentDay && (isThisMonthTask || isNextMonthTask)
-    ? "green"
-    : "red";
+    ? "green.500"
+    : "red.500";
 
   return {
     firstTask,

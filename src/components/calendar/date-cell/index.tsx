@@ -48,7 +48,10 @@ const DateCell: FC<DateCellProps> = ({
         <Flex
           w="100%"
           h="100%"
-          border={isToday ? "2px solid blue" : undefined}
+          // border={isToday ? "2px solid blue" : undefined}
+          borderColor={isToday ? "lightMode.lightBlue2" : "transparent"}
+          borderWidth="2px"
+          borderRadius="sm"
           justify="center"
           align="center"
           color={outOfBounds ? "gray.300" : "black"}

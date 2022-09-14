@@ -23,9 +23,13 @@ const Calendar: FC<CalendarProps> = ({ tasks }) => {
   return (
     <Flex
       flexDir="column"
-      border="1px solid black"
+      borderColor="lightMode.lightBlue2"
+      borderWidth="2px"
+      borderRadius="xl"
       align="center"
       userSelect="none"
+      // p="0.5rem"
+      overflow="hidden"
     >
       <Flex w="100%" justify="space-between" align="center">
         <IconButton
