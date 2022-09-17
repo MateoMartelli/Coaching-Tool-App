@@ -9,7 +9,11 @@ const Header: FC<Header> = () => {
       <Flex
         w="100%"
         h="100%"
-        borderRadius="0 0 2rem 2rem"
+        // borderRadius="0 0 2rem 2rem"
+        borderRight="none"
+        borderLeft="none"
+        borderWidth="3px"
+        borderColor="lightMode.trueIce1"
         bgColor="lightMode.lightBlue1"
         color="white"
         justify="space-between"
@@ -19,8 +23,8 @@ const Header: FC<Header> = () => {
         <Flex cursor="pointer" opacity="0.9" _hover={{ opacity: "1" }}>
           <Image
             src="/CH_logo_Black_Frost2.png"
-            height="90px"
-            width="90px"
+            height="75px"
+            width="75px"
           ></Image>
         </Flex>
         <Flex>

@@ -10,6 +10,7 @@ const ExpButton: FC<ExpButtonProps> = ({ children }) => {
       alignContent="center"
       w="55px"
       h="55px"
+      cursor="pointer"
       borderRadius="100px"
       borderColor="lightMode.trueIce1"
       borderWidth="2px"

@@ -4,7 +4,11 @@ import Header from "../../components/header";
 
 const HomeLayout: FC<HomeLayoutProps> = ({ children }) => {
   return (
-    <Flex flexDir="column" h="100vh">
+    <Flex
+      flexDir="column"
+      h="100vh"
+      // overflow="hidden"
+    >
       <Header />
       {children}
     </Flex>
