@@ -6,9 +6,9 @@ const UsersIcon: FC = () => (
     <svg
       fill="none"
       stroke="currentColor"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2.8"
       // class="feather feather-users"
       viewBox="0 0 24 24"
     >

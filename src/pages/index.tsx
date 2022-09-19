@@ -52,11 +52,11 @@ const Home: NextPage = () => {
           <Flex h="100%" w="100%" bgColor="red"></Flex>
         </Flex>
 
-        <Flex flexDir="column" position="absolute" right="0" justify="flex-end">
+        <Flex flexDir="column" position="absolute" right="0" h="85%" w="296px">
           <Flex
             justify="flex-end"
             flexDir="row"
-            h="190px"
+            h="20%"
             marginTop="1.5rem"
             overflow="hidden"
           >
@@ -68,9 +68,8 @@ const Home: NextPage = () => {
               />
             </Flex>
             <Flex
-              w="16rem"
-              display={!isActiveSch ? "none" : undefined}
-              h={isActiveSch ? "100%" : "0"}
+              w={isActiveSch ? "16rem" : "0"}
+              // h={isActiveSch ? "100%" : "0"}
               bgColor={isActiveSch ? "lightMode.lightBlue1" : "transparent"}
               borderColor="lightMode.trueIce1"
               borderWidth={isActiveSch ? "3px" : "0"}
@@ -78,6 +77,7 @@ const Home: NextPage = () => {
               borderRight="none"
               borderBottomLeftRadius="md"
               overflow="hidden"
+              transition="all 0.5s"
             >
               aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
             </Flex>
@@ -85,7 +85,8 @@ const Home: NextPage = () => {
 
           <Flex
             flexDir="row"
-            h="600px"
+            // h="600px"
+            h="80%"
             marginTop="1.5rem"
             w="100%"
             justify="flex-end"
@@ -98,68 +99,15 @@ const Home: NextPage = () => {
               />
             </Flex>
             <Flex
-              w="16rem"
-              borderRadius="5px"
-              display={!isActiveCont ? "none" : undefined}
+              w={isActiveCont ? "16rem" : 0}
+              borderBottomLeftRadius="md"
+              transition="all 0.5s"
+              overflow="hidden"
             >
-              <ContactsSection />
+              <ContactsSection isActive={isActiveCont} />
             </Flex>
           </Flex>
         </Flex>
-
-        {/* <Grid
-          gridTemplateColumns="15% 85%"
-          gridTemplateRows="25% 75%"
-          w="20%"
-          marginTop="15px"
-          marginBottom="15px"
-          color="white"
-          position="absolute"
-          right="0"
-          bottom="0"
-          top="7.5rem"
-        >
-          <Flex gridColumn="1 / 2" right="0" position="absolute">
-            <ArrowButton handleClick={handleToggleSch} isActive={isActiveSch} />
-          </Flex>
-
-          <Flex
-            w="100%"
-            h="100%"
-            bgColor="lightMode.lightBlue1"
-            borderColor="lightMode.trueIce1"
-            borderWidth="3px"
-            p="20px"
-            borderRight="none"
-            gridColumn="2 / 3"
-            gridRow="1 / 2"
-          >
-            Schedule
-          </Flex>
-
-          <Flex
-            gridColumn="1 / 2"
-            gridRow="2 / 3"
-            marginTop="15px"
-            position="absolute"
-            right="0"
-          >
-            <ArrowButton
-              handleClick={handleToggleCont}
-              isActive={isActiveCont}
-            />
-          </Flex>
-
-          <Flex
-            w="100%"
-            borderRadius="5px"
-            gridColumn="2 / 3"
-            gridRow="2 / 3"
-            marginTop="15px"
-          >
-            <ContactsSection />
-          </Flex>
-        </Grid> */}
       </Flex>
     </HomeLayout>
   );
