@@ -11,14 +11,16 @@ const ContactsSection: FC<ContactsSectionProps> = () => {
       borderColor="lightMode.trueIce1"
       borderWidth="3px"
       borderRight="none"
+      borderBottomLeftRadius="md"
       // p="4px"
       gap="4px"
       flexDir="column"
       align="start"
+      color="lightMode.snowBG1"
     >
       <Flex
         w="100%"
-        h="10%"
+        h="11%"
         flexDir="column"
         align="start"
         paddingInline="8px"
@@ -34,7 +36,7 @@ const ContactsSection: FC<ContactsSectionProps> = () => {
         data-group
         transition="all 0.25s"
         _hover={{
-          h: "13%",
+          h: "14%",
         }}
       >
         <Text
