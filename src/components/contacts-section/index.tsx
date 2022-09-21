@@ -13,7 +13,7 @@ const ContactsSection: FC<ContactsSectionProps> = ({ isActive }) => {
       borderRight="none"
       borderBottomLeftRadius="md"
       // p="4px"
-      gap="4px"
+
       flexDir="column"
       align="start"
       color="lightMode.snowBG1"

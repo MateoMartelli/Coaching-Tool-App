@@ -27,7 +27,7 @@ const globalStyle = extendTheme({
         fontFamily:
           "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif",
         w: "100%",
-        minH: "100vh",
+        h: "100vh",
       },
       "*": {
         boxSizing: "border-box",

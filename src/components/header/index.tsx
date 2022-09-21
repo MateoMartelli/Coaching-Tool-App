@@ -5,7 +5,7 @@ import globalStyle from "../../utilis/globalstyles";
 
 const Header: FC<Header> = () => {
   return (
-    <Flex w="100%" h="7.5rem" justifyContent="center" alignItems="center">
+    <Flex w="100%" justifyContent="center" alignItems="center">
       <Flex
         w="100%"
         h="100%"

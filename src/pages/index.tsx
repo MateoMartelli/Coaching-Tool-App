@@ -14,6 +14,29 @@ import UsersIcon from "../components/users-icon";
 const Home: NextPage = () => {
   const [isActiveSch, setIsActiveSch] = useState(false);
 
+  const clips = [
+    "jejejeje",
+    "jejejeje",
+    "jejejeje",
+    "jejejeje",
+    "jejejeje",
+    "jejejeje",
+    "jejejeje",
+    "jejejeje",
+    "jejejeje",
+    "jajajajaja",
+    "jejejeje",
+    "jejejeje",
+    "jejejeje",
+    "jejejeje",
+    "jejejeje",
+    "jejejeje",
+    "jejejeje",
+    "jejejeje",
+    "jejejeje",
+    "jajajajaja",
+  ];
+
   const handleToggleSch = () => {
     setIsActiveSch((prev) => !prev);
   };
@@ -27,11 +50,12 @@ const Home: NextPage = () => {
     <HomeLayout>
       <Flex h="100%" gap="10px">
         <Flex
-          h="100%"
+          h="87%"
           // bgColor="black"
           color="white"
           flexDir="column"
           paddingLeft="0.8rem"
+          position="absolute"
         >
           <ExpButton>Workplace</ExpButton>
           <ExpButton>Library</ExpButton>
@@ -42,13 +66,52 @@ const Home: NextPage = () => {
         </Flex>
         <Flex
           justify="center"
+          maxH="100%"
           w="100%"
-          h="100%"
           bgColor="Black"
           color="white"
           marginRight="4.8rem"
+          marginLeft="4.8rem"
+          marginBottom="0.5rem"
+          marginTop="0.5rem"
         >
-          <Flex h="100%" w="100%" bgColor="red" marginRight="5px"></Flex>
+          <Flex
+            h="100%"
+            w="100%"
+            bgColor="yellow"
+            marginRight="5px"
+            flexDir="column"
+          >
+            <Flex
+              bgColor="blue"
+              w="100%"
+              h="10%"
+              justify="center"
+              align="center"
+              fontSize="2.5rem"
+              fontWeight="bold"
+            >
+              Team Content
+            </Flex>
+            <Grid
+              h="100%"
+              w="100%"
+              bgColor="transparent"
+              marginRight="5px"
+              p="1px"
+              gap="1px"
+              gridTemplateColumns="1fr 1fr 1fr"
+              gridTemplateRows="1fr 1fr 1fr"
+              overflowY="scroll"
+            >
+              {clips.map((clip) => (
+                <Flex bgColor="green" h="250px">
+                  {clip}
+                </Flex>
+              ))}
+            </Grid>
+          </Flex>
+
           <Flex h="100%" w="100%" bgColor="red"></Flex>
         </Flex>
 
