@@ -4,7 +4,7 @@ import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons";
 import useCalendar from "./hooks";
 import DateCell from "./date-cell";
 
-const Calendar: FC<CalendarProps> = ({ tasks }) => {
+const Calendar: FC<CalendarProps> = ({ tasks, isActive }) => {
   const [offset, setOffset] = useState(0);
 
   const gridSize = 7 * 6;
@@ -22,16 +22,36 @@ const Calendar: FC<CalendarProps> = ({ tasks }) => {
 
   return (
     <Flex
-      flexDir="column"
-      borderColor="lightMode.lightBlue2"
-      borderWidth="2px"
-      borderRadius="xl"
-      align="center"
-      userSelect="none"
-      // p="0.5rem"
+      w={isActive ? "16rem" : "0"}
+      // h={isActive ? "100%" : "0"}
+      bgColor={isActive ? "lightMode.lightBlue1" : "transparent"}
+      borderColor="lightMode.trueIce1"
+      borderWidth={isActive ? "3px" : "0"}
+      p={isActive ? "0 0.5rem" : "0"}
+      // p="0 0.5rem"
+      borderRight="none"
+      borderBottomLeftRadius="md"
       overflow="hidden"
+      opacity={isActive ? "1" : "0"}
+      transition="all 0.5s"
+      flexDir="column"
+      userSelect="none"
+      // borderColor="lightMode.lightBlue2"
+      // borderWidth="2px"
+      // borderRadius="xl"
+      // align="center"
+      // userSelect="none"
+      // // p="0.5rem"
+      // overflow="hidden"
+      // h="100%"
     >
-      <Flex w="100%" justify="space-between" align="center">
+      <Flex
+        w="100%"
+        justify="space-between"
+        align="center"
+        transform={isActive ? "translate(0)" : "translate(500px)"}
+        transition="all 1s"
+      >
         <IconButton
           icon={<ArrowLeftIcon />}
           aria-label="Prev month"
@@ -59,9 +79,14 @@ const Calendar: FC<CalendarProps> = ({ tasks }) => {
         />
       </Flex>
 
-      <Grid templateColumns="repeat(7, 1fr)" templateRows="repeat(7, 1fr)">
+      <Grid
+        templateColumns="repeat(7, 1fr)"
+        templateRows="repeat(7, 1fr)"
+        transform={isActive ? "translate(0)" : "translate(500px)"}
+        transition="all 1s"
+      >
         {weekDays.map((day) => (
-          <Flex key={day} m="0.5rem" justify="center" align="center">
+          <Flex key={day} justify="center" align="center">
             {day}
           </Flex>
         ))}

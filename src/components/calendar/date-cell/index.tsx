@@ -43,13 +43,15 @@ const DateCell: FC<DateCellProps> = ({
   );
 
   return (
-    <Popover isOpen={isHover && firstTask !== undefined}>
+    <Popover
+      isOpen={isHover && firstTask !== undefined && todayTasks !== undefined}
+    >
       <PopoverTrigger>
         <Flex
           w="100%"
           h="100%"
           // border={isToday ? "2px solid blue" : undefined}
-          borderColor={isToday ? "lightMode.lightBlue2" : "transparent"}
+          borderColor={isToday ? "lightMode.trueIce1" : "transparent"}
           borderWidth="2px"
           borderRadius="sm"
           justify="center"
@@ -68,7 +70,7 @@ const DateCell: FC<DateCellProps> = ({
         <PopoverHeader>
           <Flex justify="space-between">
             <Text>{tooltipLabel}</Text>
-            {todayTasks.length > 1 && (
+            {todayTasks !== undefined && todayTasks.length > 1 && (
               <Flex
                 w="32px"
                 h="32px"
@@ -77,7 +79,7 @@ const DateCell: FC<DateCellProps> = ({
                 border="1px solid black"
                 borderRadius="50%"
               >
-                {`+${todayTasks.length - 1}`}
+                {`+${todayTasks?.length - 1}`}
               </Flex>
             )}
           </Flex>

@@ -6,7 +6,7 @@ const useDateCell = (
   index: number,
   monthOffsetBeging: number,
   monthOffsetEnding: number,
-  tasks: {
+  tasks?: {
     title: string;
     date: Date;
   }[]
@@ -17,6 +17,8 @@ const useDateCell = (
     year === currentDate.getFullYear();
 
   const outOfBounds = index < monthOffsetBeging || index >= monthOffsetEnding;
+
+  if (!tasks) return { isToday };
 
   const todayTasks = tasks
     .filter(

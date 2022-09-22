@@ -6,5 +6,5 @@ interface DateCellProps {
   monthOffsetBeging: number;
   monthOffsetEnding: number;
   index: number;
-  tasks: { title: string; date: Date }[];
+  tasks?: { title: string; date: Date }[];
 }

@@ -1,3 +1,4 @@
 interface CalendarProps {
-  tasks: { title: string; date: Date }[];
+  isActive?: boolean;
+  tasks?: { title: string; date: Date }[];
 }

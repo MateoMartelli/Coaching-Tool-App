@@ -10,6 +10,7 @@ import ArrowButton from "../components/arrow-button";
 import ContactsSection from "../components/contacts-section";
 import { CalendarIcon } from "@chakra-ui/icons";
 import UsersIcon from "../components/users-icon";
+import Calendar from "../components/calendar";
 
 const Home: NextPage = () => {
   const [isActiveSch, setIsActiveSch] = useState(false);
@@ -25,20 +26,31 @@ const Home: NextPage = () => {
   };
   return (
     <HomeLayout>
-      <Flex h="100%" gap="10px">
+      <Flex h="100%">
         <Flex
           h="100%"
           // bgColor="black"
           color="white"
           flexDir="column"
           paddingLeft="0.8rem"
+          justify="space-between"
+          bgColor="lightMode.lightBlue1"
+          borderRightWidth="3px"
+          borderRightColor="lightMode.trueIce1"
+          // borderTopWidth="3px"
+          // borderTopColor="lightMode.lightBlue1"
+          // transform="translate(0, -3px)"
         >
-          <ExpButton>Workplace</ExpButton>
-          <ExpButton>Library</ExpButton>
-          <ExpButton>Meeting</ExpButton>
-          <ExpButton>Data</ExpButton>
-          <ExpButton>Manager</ExpButton>
-          <ExpButton>Support</ExpButton>
+          <Flex flexDir="column" mr="1rem">
+            <ExpButton>Workplace</ExpButton>
+            <ExpButton>Library</ExpButton>
+            <ExpButton>Meeting</ExpButton>
+            <ExpButton>Data</ExpButton>
+            <ExpButton>Manager</ExpButton>
+          </Flex>
+          <Flex pb="1rem">
+            <ExpButton>Support</ExpButton>
+          </Flex>
         </Flex>
         <Flex
           justify="center"
@@ -52,11 +64,11 @@ const Home: NextPage = () => {
           <Flex h="100%" w="100%" bgColor="red"></Flex>
         </Flex>
 
-        <Flex flexDir="column" position="absolute" right="0" h="85%" w="296px">
+        <Flex flexDir="column" position="absolute" right="0" h="85%" w="325px">
           <Flex
             justify="flex-end"
             flexDir="row"
-            h="20%"
+            h="35%"
             marginTop="1.5rem"
             overflow="hidden"
           >
@@ -67,7 +79,7 @@ const Home: NextPage = () => {
                 isActive={isActiveSch}
               />
             </Flex>
-            <Flex
+            {/* <Flex
               w={isActiveSch ? "16rem" : "0"}
               // h={isActiveSch ? "100%" : "0"}
               bgColor={isActiveSch ? "lightMode.lightBlue1" : "transparent"}
@@ -78,15 +90,15 @@ const Home: NextPage = () => {
               borderBottomLeftRadius="md"
               overflow="hidden"
               transition="all 0.5s"
-            >
-              aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            </Flex>
+            > */}
+            <Calendar isActive={isActiveSch} />
+            {/* </Flex> */}
           </Flex>
 
           <Flex
             flexDir="row"
             // h="600px"
-            h="80%"
+            h="65%"
             marginTop="1.5rem"
             w="100%"
             justify="flex-end"
