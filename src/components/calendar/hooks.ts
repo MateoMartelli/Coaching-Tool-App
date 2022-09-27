@@ -24,7 +24,8 @@ const useCalendar = (gridSize: number, offset: number) => {
       lastDayOfLastMonth.getDate() - (firstDay.getDay() - i)
     );
 
-  const monthForCalendar = lastMonthLastDays.map((el) => el);
+  // const monthForCalendar = lastMonthLastDays.map((el) => el);
+  const monthForCalendar = [...lastMonthLastDays]
   for (let i = 0; i < lastDay.getDate(); i++) monthForCalendar.push(i + 1);
 
   for (

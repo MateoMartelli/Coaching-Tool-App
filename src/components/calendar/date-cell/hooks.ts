@@ -18,7 +18,7 @@ const useDateCell = (
 
   const outOfBounds = index < monthOffsetBeging || index >= monthOffsetEnding;
 
-  if (!tasks) return { isToday };
+  if (!tasks) return { isToday, outOfBounds };
 
   const todayTasks = tasks
     .filter(

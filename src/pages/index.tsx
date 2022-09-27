@@ -1,9 +1,6 @@
 import type { NextPage } from "next";
 import { useState } from "react";
-import { Formik, Field, Form, FieldProps } from "formik";
-import Image from "next/image";
-import { Box, Flex, Grid, Text } from "@chakra-ui/react";
-import Header from "../components/header";
+import { Flex } from "@chakra-ui/react";
 import ExpButton from "../components/exp-button";
 import HomeLayout from "../layouts/home-layout";
 import ArrowButton from "../components/arrow-button";
@@ -24,32 +21,45 @@ const Home: NextPage = () => {
   const handleToggleCont = () => {
     setIsActiveCont((prev) => !prev);
   };
+
   return (
     <HomeLayout>
       <Flex h="100%">
         <Flex
           h="100%"
-          // bgColor="black"
           color="white"
           flexDir="column"
-          paddingLeft="0.8rem"
-          justify="space-between"
           bgColor="lightMode.lightBlue1"
           borderRightWidth="3px"
           borderRightColor="lightMode.trueIce1"
-          // borderTopWidth="3px"
-          // borderTopColor="lightMode.lightBlue1"
-          // transform="translate(0, -3px)"
+          _before={{
+            content: `""`,
+            padding: 0,
+            margin: 0,
+            position: "relative",
+            top: "-3px",
+            backgroundColor: "lightMode.lightBlue1",
+            height: "3px",
+            width: "100%",
+          }}
         >
-          <Flex flexDir="column" mr="1rem">
-            <ExpButton>Workplace</ExpButton>
-            <ExpButton>Library</ExpButton>
-            <ExpButton>Meeting</ExpButton>
-            <ExpButton>Data</ExpButton>
-            <ExpButton>Manager</ExpButton>
-          </Flex>
-          <Flex pb="1rem">
-            <ExpButton>Support</ExpButton>
+          <Flex
+            flexDir="column"
+            justify="space-between"
+            h="100%"
+            paddingLeft="0.8rem"
+            mr="1rem"
+          >
+            <Flex flexDir="column">
+              <ExpButton>Workplace</ExpButton>
+              <ExpButton>Library</ExpButton>
+              <ExpButton>Meeting</ExpButton>
+              <ExpButton>Data</ExpButton>
+              <ExpButton>Manager</ExpButton>
+            </Flex>
+            <Flex pb="1rem">
+              <ExpButton>Support</ExpButton>
+            </Flex>
           </Flex>
         </Flex>
         <Flex
@@ -68,7 +78,8 @@ const Home: NextPage = () => {
           <Flex
             justify="flex-end"
             flexDir="row"
-            h="35%"
+            h="42%"
+            minH="247px"
             marginTop="1.5rem"
             overflow="hidden"
           >
@@ -79,28 +90,14 @@ const Home: NextPage = () => {
                 isActive={isActiveSch}
               />
             </Flex>
-            {/* <Flex
-              w={isActiveSch ? "16rem" : "0"}
-              // h={isActiveSch ? "100%" : "0"}
-              bgColor={isActiveSch ? "lightMode.lightBlue1" : "transparent"}
-              borderColor="lightMode.trueIce1"
-              borderWidth={isActiveSch ? "3px" : "0"}
-              p={isActiveSch ? "20px" : "0"}
-              borderRight="none"
-              borderBottomLeftRadius="md"
-              overflow="hidden"
-              transition="all 0.5s"
-            > */}
             <Calendar isActive={isActiveSch} />
-            {/* </Flex> */}
           </Flex>
 
           <Flex
             flexDir="row"
-            // h="600px"
-            h="65%"
-            marginTop="1.5rem"
+            h="100%"
             w="100%"
+            marginTop="1.5rem"
             justify="flex-end"
           >
             <Flex>

@@ -23,12 +23,10 @@ const Calendar: FC<CalendarProps> = ({ tasks, isActive }) => {
   return (
     <Flex
       w={isActive ? "16rem" : "0"}
-      // h={isActive ? "100%" : "0"}
       bgColor={isActive ? "lightMode.lightBlue1" : "transparent"}
       borderColor="lightMode.trueIce1"
       borderWidth={isActive ? "3px" : "0"}
       p={isActive ? "0 0.5rem" : "0"}
-      // p="0 0.5rem"
       borderRight="none"
       borderBottomLeftRadius="md"
       overflow="hidden"
@@ -36,14 +34,6 @@ const Calendar: FC<CalendarProps> = ({ tasks, isActive }) => {
       transition="all 0.5s"
       flexDir="column"
       userSelect="none"
-      // borderColor="lightMode.lightBlue2"
-      // borderWidth="2px"
-      // borderRadius="xl"
-      // align="center"
-      // userSelect="none"
-      // // p="0.5rem"
-      // overflow="hidden"
-      // h="100%"
     >
       <Flex
         w="100%"
