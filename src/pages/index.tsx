@@ -10,32 +10,10 @@ import ArrowButton from "../components/arrow-button";
 import ContactsSection from "../components/contacts-section";
 import { CalendarIcon } from "@chakra-ui/icons";
 import UsersIcon from "../components/users-icon";
+import useMock from "../utilis/mocks";
 
 const Home: NextPage = () => {
   const [isActiveSch, setIsActiveSch] = useState(false);
-
-  const clips = [
-    "jejejeje",
-    "jejejeje",
-    "jejejeje",
-    "jejejeje",
-    "jejejeje",
-    "jejejeje",
-    "jejejeje",
-    "jejejeje",
-    "jejejeje",
-    "jajajajaja",
-    "jejejeje",
-    "jejejeje",
-    "jejejeje",
-    "jejejeje",
-    "jejejeje",
-    "jejejeje",
-    "jejejeje",
-    "jejejeje",
-    "jejejeje",
-    "jajajajaja",
-  ];
 
   const handleToggleSch = () => {
     setIsActiveSch((prev) => !prev);
@@ -43,19 +21,21 @@ const Home: NextPage = () => {
 
   const [isActiveCont, setIsActiveCont] = useState(false);
 
+  const { userClip } = useMock();
+
   const handleToggleCont = () => {
     setIsActiveCont((prev) => !prev);
   };
   return (
     <HomeLayout>
-      <Flex h="100%" gap="10px">
+      <Flex h="90%" gap="10px">
         <Flex
           h="87%"
           // bgColor="black"
           color="white"
           flexDir="column"
           paddingLeft="0.8rem"
-          position="absolute"
+          // position="absolute"
         >
           <ExpButton>Workplace</ExpButton>
           <ExpButton>Library</ExpButton>
@@ -66,53 +46,174 @@ const Home: NextPage = () => {
         </Flex>
         <Flex
           justify="center"
-          maxH="100%"
+          maxH="90%"
           w="100%"
-          bgColor="Black"
+          bgColor="transparent"
           color="white"
           marginRight="4.8rem"
-          marginLeft="4.8rem"
+          // marginLeft="4.8rem"
           marginBottom="0.5rem"
           marginTop="0.5rem"
         >
           <Flex
             h="100%"
             w="100%"
-            bgColor="yellow"
+            bgColor="transparent"
+            // borderColor="lightMode.trueIce1"
+            // borderWidth="3px"
+            // borderRadius="8px"
             marginRight="5px"
             flexDir="column"
+            align="center"
           >
             <Flex
-              bgColor="blue"
-              w="100%"
-              h="10%"
+              color="lightMode.snowBG3"
+              bgColor="lightMode.trueIce1"
+              borderColor="lightMode.trueIce1"
+              borderWidth="2px"
+              borderRadius="0.5rem"
+              w="40%"
+              h="6%"
+              marginTop="0.3rem"
+              marginBottom="0.5rem"
               justify="center"
               align="center"
-              fontSize="2.5rem"
+              fontSize="2.45rem"
               fontWeight="bold"
             >
-              Team Content
+              TEAM CONTENT
             </Flex>
             <Grid
               h="100%"
-              w="100%"
-              bgColor="transparent"
+              w="95%"
+              bgColor="lightMode.snowBG2"
               marginRight="5px"
-              p="1px"
               gap="1px"
               gridTemplateColumns="1fr 1fr 1fr"
               gridTemplateRows="1fr 1fr 1fr"
-              overflowY="scroll"
+              overflowY={userClip.length > 9 ? "scroll" : undefined}
+              borderRadius="0.8rem"
+              borderWidth="2px"
+              borderColor="lightMode.trueIce1"
+              p="1rem"
             >
-              {clips.map((clip) => (
-                <Flex bgColor="green" h="250px">
-                  {clip}
+              {userClip.map(({ user, clip }) => (
+                <Flex
+                  h="235px"
+                  marginInline="6px"
+                  marginBlock="5px"
+                  flexDir="column"
+                  bgColor="lightMode.snowBG3"
+                  borderRadius="1rem"
+                  cursor="pointer"
+                  overflow="clip"
+                  boxShadow="1px 1px 4px gray"
+                >
+                  <Flex h="63%" w="100%">
+                    <Image src={`${clip.url}`} height="100%" width="1000%" />
+                  </Flex>
+                  <Flex
+                    flexDir="column"
+                    color="lightMode.trueIce1"
+                    fontWeight="bold"
+                    paddingInline="1rem"
+                  >
+                    <Text fontSize="1.3rem" marginTop="15px" lineHeight="0px">
+                      {clip.teamBlue} vs {clip.teamRed} - {clip.league}
+                    </Text>
+                    <Text fontSize="1rem" marginTop="20px" lineHeight="0">
+                      {clip.side}: {clip.tag.name}
+                    </Text>
+                    <Flex fontSize="0.8rem" marginTop="25px" lineHeight="0">
+                      <Text>{user.username}</Text>
+
+                      <Text>- {user.role.name}</Text>
+                    </Flex>
+                  </Flex>
                 </Flex>
               ))}
             </Grid>
           </Flex>
 
-          <Flex h="100%" w="100%" bgColor="red"></Flex>
+          <Flex
+            h="100%"
+            w="100%"
+            bgColor="transparent"
+            // borderColor="lightMode.trueIce1"
+            // borderWidth="3px"
+            // borderRadius="8px"
+            marginRight="5px"
+            flexDir="column"
+            align="center"
+          >
+            <Flex
+              color="lightMode.snowBG3"
+              bgColor="lightMode.trueIce1"
+              borderColor="lightMode.trueIce1"
+              borderWidth="2px"
+              borderRadius="0.5rem"
+              w="40%"
+              h="6%"
+              marginTop="0.3rem"
+              marginBottom="0.5rem"
+              justify="center"
+              align="center"
+              fontSize="2.45rem"
+              fontWeight="bold"
+            >
+              LANE CONTENT
+            </Flex>
+            <Grid
+              h="100%"
+              w="95%"
+              bgColor="lightMode.snowBG2"
+              marginRight="5px"
+              gap="1px"
+              gridTemplateColumns="1fr 1fr 1fr"
+              gridTemplateRows="1fr 1fr 1fr"
+              overflowY={userClip.length > 9 ? "scroll" : undefined}
+              borderRadius="0.8rem"
+              borderWidth="2px"
+              borderColor="lightMode.trueIce1"
+              p="1rem"
+            >
+              {userClip.map(({ user, clip }) => (
+                <Flex
+                  h="235px"
+                  marginInline="6px"
+                  marginBlock="5px"
+                  flexDir="column"
+                  bgColor="lightMode.snowBG3"
+                  borderRadius="1rem"
+                  cursor="pointer"
+                  overflow="clip"
+                  boxShadow="1px 1px 4px gray"
+                >
+                  <Flex h="63%" w="100%">
+                    <Image src={`${clip.url}`} height="100%" width="1000%" />
+                  </Flex>
+                  <Flex
+                    flexDir="column"
+                    color="lightMode.trueIce1"
+                    fontWeight="bold"
+                    paddingInline="1rem"
+                  >
+                    <Text fontSize="1.3rem" marginTop="15px" lineHeight="0px">
+                      {clip.teamBlue} vs {clip.teamRed} - {clip.league}
+                    </Text>
+                    <Text fontSize="1rem" marginTop="20px" lineHeight="0">
+                      {clip.side}: {clip.tag.name}
+                    </Text>
+                    <Flex fontSize="0.8rem" marginTop="25px" lineHeight="0">
+                      <Text>{user.username}</Text>
+
+                      <Text>- {user.role.name}</Text>
+                    </Flex>
+                  </Flex>
+                </Flex>
+              ))}
+            </Grid>
+          </Flex>
         </Flex>
 
         <Flex flexDir="column" position="absolute" right="0" h="85%" w="296px">

@@ -7,6 +7,7 @@ const HomeLayout: FC<HomeLayoutProps> = ({ children }) => {
     <Flex
       flexDir="column"
       h="100vh"
+      bgColor="lightMode.snowBG1"
       // overflow="hidden"
     >
       <Header />
