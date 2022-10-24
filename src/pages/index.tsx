@@ -1,9 +1,7 @@
 import type { NextPage } from "next";
-import { useState } from "react";
-import { Formik, Field, Form, FieldProps } from "formik";
-import Image from "next/image";
+import { useState, useRef, useLayoutEffect } from "react";
 import { Box, Flex, Grid, Text } from "@chakra-ui/react";
-import Header from "../components/header";
+import Image from "next/image";
 import ExpButton from "../components/exp-button";
 import HomeLayout from "../layouts/home-layout";
 import ArrowButton from "../components/arrow-button";
@@ -11,9 +9,17 @@ import ContactsSection from "../components/contacts-section";
 import { CalendarIcon } from "@chakra-ui/icons";
 import UsersIcon from "../components/users-icon";
 import useMock from "../utilis/mocks";
+import Calendar from "../components/calendar";
 
 const Home: NextPage = () => {
   const [isActiveSch, setIsActiveSch] = useState(false);
+
+  const [height, setHeight] = useState(0);
+
+  const ref = useRef<HTMLHeadingElement>(null);
+
+  const columns = 3;
+  const rows = 3;
 
   const handleToggleSch = () => {
     setIsActiveSch((prev) => !prev);
@@ -26,27 +32,57 @@ const Home: NextPage = () => {
   const handleToggleCont = () => {
     setIsActiveCont((prev) => !prev);
   };
+
+  useLayoutEffect(() => {
+    const h = ref.current ? ref.current.offsetHeight : 0;
+    setHeight(h);
+  });
+
+  console.log(ref);
+
   return (
     <HomeLayout>
-      <Flex h="90%" gap="10px">
+      <Flex h="100%">
         <Flex
-          h="87%"
-          // bgColor="black"
+          h="100%"
           color="white"
           flexDir="column"
-          paddingLeft="0.8rem"
-          // position="absolute"
+          bgColor="lightMode.lightBlue1"
+          borderRightWidth="3px"
+          borderRightColor="lightMode.trueIce1"
+          _before={{
+            content: `""`,
+            padding: 0,
+            margin: 0,
+            position: "relative",
+            top: "-3px",
+            backgroundColor: "lightMode.lightBlue1",
+            height: "3px",
+            width: "100%",
+          }}
         >
-          <ExpButton>Workplace</ExpButton>
-          <ExpButton>Library</ExpButton>
-          <ExpButton>Meeting</ExpButton>
-          <ExpButton>Data</ExpButton>
-          <ExpButton>Manager</ExpButton>
-          <ExpButton>Support</ExpButton>
+          <Flex
+            flexDir="column"
+            justify="space-between"
+            h="100%"
+            paddingLeft="0.8rem"
+            mr="1rem"
+          >
+            <Flex flexDir="column">
+              <ExpButton>Workplace</ExpButton>
+              <ExpButton>Library</ExpButton>
+              <ExpButton>Meeting</ExpButton>
+              <ExpButton>Data</ExpButton>
+              <ExpButton>Manager</ExpButton>
+            </Flex>
+            <Flex pb="1rem">
+              <ExpButton>Support</ExpButton>
+            </Flex>
+          </Flex>
         </Flex>
         <Flex
           justify="center"
-          maxH="90%"
+          maxH="600px"
           w="100%"
           bgColor="transparent"
           color="white"
@@ -74,32 +110,35 @@ const Home: NextPage = () => {
               borderRadius="0.5rem"
               w="40%"
               h="6%"
-              marginTop="0.3rem"
-              marginBottom="0.5rem"
+              marginTop="0.5rem"
+              marginBottom="0.8rem"
               justify="center"
               align="center"
-              fontSize="2.45rem"
+              fontSize="1.5rem"
               fontWeight="bold"
             >
               TEAM CONTENT
             </Flex>
             <Grid
-              h="100%"
+              h="90%"
               w="95%"
               bgColor="lightMode.snowBG2"
               marginRight="5px"
               gap="1px"
-              gridTemplateColumns="1fr 1fr 1fr"
-              gridTemplateRows="1fr 1fr 1fr"
-              overflowY={userClip.length > 9 ? "scroll" : undefined}
+              gridTemplateColumns={`repeat(${columns}, 1fr)`}
+              gridTemplateRows={`repeat(${rows}, 1fr)`}
+              overflowY={
+                userClip.length > columns * rows ? "scroll" : undefined
+              }
               borderRadius="0.8rem"
               borderWidth="2px"
               borderColor="lightMode.trueIce1"
               p="1rem"
+              ref={ref}
             >
               {userClip.map(({ user, clip }) => (
                 <Flex
-                  h="235px"
+                  h={`${height / 3.2}px`}
                   marginInline="6px"
                   marginBlock="5px"
                   flexDir="column"
@@ -118,13 +157,13 @@ const Home: NextPage = () => {
                     fontWeight="bold"
                     paddingInline="1rem"
                   >
-                    <Text fontSize="1.3rem" marginTop="15px" lineHeight="0px">
+                    <Text fontSize="1rem" lineHeight="0" marginTop="15px">
                       {clip.teamBlue} vs {clip.teamRed} - {clip.league}
                     </Text>
-                    <Text fontSize="1rem" marginTop="20px" lineHeight="0">
+                    <Text fontSize=".8rem" lineHeight="0" marginTop="15px">
                       {clip.side}: {clip.tag.name}
                     </Text>
-                    <Flex fontSize="0.8rem" marginTop="25px" lineHeight="0">
+                    <Flex fontSize="0.6rem" lineHeight="0" marginTop="15px">
                       <Text>{user.username}</Text>
 
                       <Text>- {user.role.name}</Text>
@@ -154,24 +193,26 @@ const Home: NextPage = () => {
               borderRadius="0.5rem"
               w="40%"
               h="6%"
-              marginTop="0.3rem"
-              marginBottom="0.5rem"
+              marginTop="0.5rem"
+              marginBottom="0.8rem"
               justify="center"
               align="center"
-              fontSize="2.45rem"
+              fontSize="1.5rem"
               fontWeight="bold"
             >
               LANE CONTENT
             </Flex>
             <Grid
-              h="100%"
+              h="90%"
               w="95%"
               bgColor="lightMode.snowBG2"
               marginRight="5px"
               gap="1px"
-              gridTemplateColumns="1fr 1fr 1fr"
-              gridTemplateRows="1fr 1fr 1fr"
-              overflowY={userClip.length > 9 ? "scroll" : undefined}
+              gridTemplateColumns={`repeat(${columns}, 1fr)`}
+              gridTemplateRows={`repeat(${rows}, 1fr)`}
+              overflowY={
+                userClip.length > columns * rows ? "scroll" : undefined
+              }
               borderRadius="0.8rem"
               borderWidth="2px"
               borderColor="lightMode.trueIce1"
@@ -179,7 +220,7 @@ const Home: NextPage = () => {
             >
               {userClip.map(({ user, clip }) => (
                 <Flex
-                  h="235px"
+                  h={`${height / 3.2}px`}
                   marginInline="6px"
                   marginBlock="5px"
                   flexDir="column"
@@ -198,13 +239,13 @@ const Home: NextPage = () => {
                     fontWeight="bold"
                     paddingInline="1rem"
                   >
-                    <Text fontSize="1.3rem" marginTop="15px" lineHeight="0px">
+                    <Text fontSize="1rem" lineHeight="0" marginTop="15px">
                       {clip.teamBlue} vs {clip.teamRed} - {clip.league}
                     </Text>
-                    <Text fontSize="1rem" marginTop="20px" lineHeight="0">
+                    <Text fontSize=".8rem" lineHeight="0" marginTop="15px">
                       {clip.side}: {clip.tag.name}
                     </Text>
-                    <Flex fontSize="0.8rem" marginTop="25px" lineHeight="0">
+                    <Flex fontSize="0.6rem" lineHeight="0" marginTop="15px">
                       <Text>{user.username}</Text>
 
                       <Text>- {user.role.name}</Text>
@@ -216,11 +257,19 @@ const Home: NextPage = () => {
           </Flex>
         </Flex>
 
-        <Flex flexDir="column" position="absolute" right="0" h="85%" w="296px">
+        <Flex
+          flexDir="column"
+          position="absolute"
+          right="0"
+          h="85%"
+          w={isActiveSch || isActiveCont ? "325px" : "40px"}
+          bgColor="red"
+        >
           <Flex
             justify="flex-end"
             flexDir="row"
-            h="20%"
+            h="42%"
+            minH="247px"
             marginTop="1.5rem"
             overflow="hidden"
           >
@@ -231,28 +280,14 @@ const Home: NextPage = () => {
                 isActive={isActiveSch}
               />
             </Flex>
-            <Flex
-              w={isActiveSch ? "16rem" : "0"}
-              // h={isActiveSch ? "100%" : "0"}
-              bgColor={isActiveSch ? "lightMode.lightBlue1" : "transparent"}
-              borderColor="lightMode.trueIce1"
-              borderWidth={isActiveSch ? "3px" : "0"}
-              p={isActiveSch ? "20px" : "0"}
-              borderRight="none"
-              borderBottomLeftRadius="md"
-              overflow="hidden"
-              transition="all 0.5s"
-            >
-              aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            </Flex>
+            <Calendar isActive={isActiveSch} />
           </Flex>
 
           <Flex
             flexDir="row"
-            // h="600px"
-            h="80%"
-            marginTop="1.5rem"
+            h="100%"
             w="100%"
+            marginTop="1.5rem"
             justify="flex-end"
           >
             <Flex>

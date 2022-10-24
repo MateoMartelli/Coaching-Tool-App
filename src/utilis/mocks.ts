@@ -23,39 +23,39 @@ const useMocks = () => {
       name: "Shift",
     },
   ];
-  
+
   const role: Role[] = [
     {
       id: 0,
       name: "Head Coach",
     },
-  
+
     {
       id: 1,
       name: "Assistant Coach",
     },
-  
+
     {
       id: 2,
       name: "Strategic Coach",
     },
-  
+
     {
       id: 3,
       name: "Positional Coach",
     },
-  
+
     {
       id: 4,
       name: "Analyst",
     },
-  
+
     {
       id: 5,
       name: "Player",
     },
   ];
-  
+
   const team: Team[] = [
     {
       id: 0,
@@ -74,7 +74,7 @@ const useMocks = () => {
       name: "Antares",
     },
   ];
-  
+
   const lane: Lane[] = [
     {
       id: 0,
@@ -97,7 +97,7 @@ const useMocks = () => {
       name: "SUPPORT",
     },
   ];
-  
+
   const users: User[] = [
     {
       id: 0,
@@ -130,7 +130,7 @@ const useMocks = () => {
       lane: lane[4],
     },
   ];
-  
+
   const clips: Clip[] = [
     {
       id: 0,
@@ -210,31 +210,30 @@ const useMocks = () => {
       // updatedAt: Date,
     },
   ];
-  
+
   const userClip: UserClip[] = [
     { id: 0, user: users[0], clip: clips[0] },
-  { id: 1, user: users[1], clip: clips[1] },
-  { id: 2, user: users[2], clip: clips[2] },
-  { id: 0, user: users[0], clip: clips[0] },
-  { id: 1, user: users[1], clip: clips[1] },
-  { id: 2, user: users[2], clip: clips[2] },
-  { id: 0, user: users[0], clip: clips[0] },
-  { id: 1, user: users[1], clip: clips[1] },
-  { id: 2, user: users[2], clip: clips[2] },
-  
-];
+    { id: 1, user: users[1], clip: clips[1] },
+    { id: 2, user: users[2], clip: clips[2] },
+    { id: 0, user: users[0], clip: clips[0] },
+    { id: 1, user: users[1], clip: clips[1] },
+    { id: 2, user: users[2], clip: clips[2] },
+    { id: 0, user: users[0], clip: clips[0] },
+    { id: 1, user: users[1], clip: clips[1] },
+    { id: 2, user: users[2], clip: clips[2] },
+    { id: 0, user: users[0], clip: clips[0] },
+    { id: 1, user: users[1], clip: clips[1] },
+    { id: 2, user: users[2], clip: clips[2] },
+    { id: 0, user: users[0], clip: clips[0] },
+    { id: 1, user: users[1], clip: clips[1] },
+    { id: 2, user: users[2], clip: clips[2] },
+    { id: 0, user: users[0], clip: clips[0] },
+    { id: 1, user: users[1], clip: clips[1] },
+    { id: 2, user: users[2], clip: clips[2] },
+  ];
 
-  return {tag,
-    role,
-    team,
-    lane,
-    users,
-    clips,
-    userClip};
-  
-}
-
-
+  return { tag, role, team, lane, users, clips, userClip };
+};
 
 // const Mocks = {
 //   tag,
