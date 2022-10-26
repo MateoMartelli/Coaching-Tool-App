@@ -8,8 +8,11 @@ const ExpButton: FC<ExpButtonProps> = ({ children }) => {
     <Grid
       gridTemplateColumns="48px 1fr"
       alignContent="center"
-      w="55px"
-      h="55px"
+      w="45px"
+      h="45px"
+      // w="55px"
+      // h="55px"
+      cursor="pointer"
       borderRadius="100px"
       borderColor="lightMode.trueIce1"
       borderWidth="2px"
@@ -21,7 +24,8 @@ const ExpButton: FC<ExpButtonProps> = ({ children }) => {
       paddingInlineEnd="auto"
       overflow="hidden"
       _hover={{
-        w: "149px",
+        // w: "149px",
+        w: "140px",
       }}
       data-group
       paddingInline="0"
@@ -29,10 +33,13 @@ const ExpButton: FC<ExpButtonProps> = ({ children }) => {
       <Flex marginLeft="3px">
         <Image
           src="/CH_logo_Black_Frost2.png"
-          height="45px"
-          width="45px"
+          height="35px"
+          // height="45px"
+          width="35px"
+          // width="45px"
           layout="fixed"
-        ></Image>
+          alt="logo"
+        />
       </Flex>
 
       <Flex flexDir="column" justify="center">
@@ -40,7 +47,7 @@ const ExpButton: FC<ExpButtonProps> = ({ children }) => {
           visibility="visible"
           display="inline-block"
           color="transparent"
-          fontSize="1.1rem"
+          fontSize="1rem"
           overflow="hidden"
           whiteSpace="nowrap"
           transition="all 0.5s"

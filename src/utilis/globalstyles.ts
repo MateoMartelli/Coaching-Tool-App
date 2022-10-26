@@ -5,6 +5,7 @@ const colors = {
   lightMode: {
     snowBG1: "#E3F0F2",
     snowBG2: "#C6E1E4",
+    snowBG3: "#F1F8F9",
     lightBlue1: "#A6C3DD",
     lightBlue2: "#7fa8cf",
     trueIce1: "#2C3644",
@@ -27,7 +28,7 @@ const globalStyle = extendTheme({
         fontFamily:
           "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif",
         w: "100%",
-        minH: "100vh",
+        h: "100vh",
       },
       "*": {
         boxSizing: "border-box",

@@ -1,0 +1,3 @@
+interface ContactsSectionProps {
+  isActive: boolean;
+}
