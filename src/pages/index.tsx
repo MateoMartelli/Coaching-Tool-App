@@ -134,6 +134,16 @@ const Home: NextPage = () => {
               borderWidth="2px"
               borderColor="lightMode.trueIce1"
               p="1rem"
+              sx={{
+                "::-webkit-scrollbar": {
+                  width: "12px",
+                },
+                "::-webkit-scrollbar-track": {},
+                "::-webkit-scrollbar-thumb": {
+                  background: "lightMode.trueIce1",
+                  "border-radius": "8px 8px 8px 8px",
+                },
+              }}
               ref={ref}
             >
               {userClip.map(({ user, clip }) => (
@@ -217,6 +227,16 @@ const Home: NextPage = () => {
               borderWidth="2px"
               borderColor="lightMode.trueIce1"
               p="1rem"
+              sx={{
+                "::-webkit-scrollbar": {
+                  width: "12px",
+                },
+                "::-webkit-scrollbar-track": {},
+                "::-webkit-scrollbar-thumb": {
+                  background: "lightMode.trueIce1",
+                  "border-radius": "8px 8px 8px 8px",
+                },
+              }}
             >
               {userClip.map(({ user, clip }) => (
                 <Flex
@@ -263,7 +283,7 @@ const Home: NextPage = () => {
           right="0"
           h="85%"
           w={isActiveSch || isActiveCont ? "325px" : "40px"}
-          bgColor="red"
+          // bgColor="red"
         >
           <Flex
             justify="flex-end"
