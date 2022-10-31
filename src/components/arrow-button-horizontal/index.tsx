@@ -2,7 +2,11 @@ import { FC } from "react";
 import { IconButton, Flex, Icon } from "@chakra-ui/react";
 import { ArrowRightIcon, ArrowLeftIcon } from "@chakra-ui/icons";
 
-const ArrowButton: FC<ArrowButtonProps> = ({ isActive, handleClick, Icon }) => {
+const ArrowButtonHorizontal: FC<ArrowButtonHorizontalProps> = ({
+  isActive,
+  handleClick,
+  Icon,
+}) => {
   const iconDisplay = Icon ? (
     <Icon />
   ) : isActive ? (
@@ -33,4 +37,4 @@ const ArrowButton: FC<ArrowButtonProps> = ({ isActive, handleClick, Icon }) => {
   );
 };
 
-export default ArrowButton;
+export default ArrowButtonHorizontal;
