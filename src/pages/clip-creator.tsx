@@ -28,14 +28,27 @@ import ArrowButtonVertical from "../components/arrow-button-vertical";
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
 const ClipCreator: NextPage = () => {
-  const defaultValue = [10, 30];
+  const maxValue = 1000;
+  const defaultValue = [0, maxValue];
   const [sliderValue, setSliderValue] = useState(defaultValue);
   const [isShownLeft, setIsShownLeft] = useState(false);
   const [isShownRight, setIsShownRight] = useState(false);
   const [isActiveTop, setIsActiveTop] = useState(true);
   const [displayedURL, setDisplayedURL] = useState("");
+  const [duration, setDuration] = useState(0);
+  const [startTime, setStartTime] = useState(0);
+  const [endTime, setEndTime] = useState(duration);
+  const [isBounce, setIsBounce] = useState(false);
   const handleToggleTop = () => {
     setIsActiveTop((prev) => !prev);
+  };
+
+  const formatTime = (time: number) => {
+    const aux = time / 60;
+    const minutes = Math.floor(aux);
+    const seconds = Math.floor((aux - minutes) * 60);
+
+    return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
   };
 
   return (
@@ -221,13 +234,47 @@ const ClipCreator: NextPage = () => {
               alignItems="center"
               marginTop="4px"
             >
-              <ReactPlayer url={displayedURL} height="100%" width="100%" />
+              <ReactPlayer
+                url={`${displayedURL}#t=${startTime}&end=${endTime}`}
+                height="100%"
+                width="100%"
+                playing
+                onPlay={() => {
+                  if (isBounce) {
+                    setTimeout(() => {
+                      setIsBounce(false);
+                      if (sliderValue[0] !== 0)
+                        setStartTime(duration * (sliderValue[0] / maxValue));
+                      else setStartTime(0);
+                    }, 2000);
+                  }
+                }}
+                onDuration={(d) => setDuration(d)}
+              />
               <RangeSlider
+                min={0}
+                max={maxValue}
+                step={1}
                 marginTop="8px"
                 w="98%"
                 aria-label={["min", "max"]}
                 defaultValue={defaultValue}
-                onChange={(val) => setSliderValue(val)}
+                onChange={(val) => {
+                  if (val[0] !== 0)
+                    setStartTime(duration * (val[0] / maxValue));
+                  else setStartTime(0);
+                  if (val[1] !== 0)
+                    setEndTime((prev) => {
+                      if (prev !== duration * (val[1] / maxValue)) {
+                        setStartTime(duration * (val[1] / maxValue));
+                        setIsBounce(true);
+                        return duration * (val[1] / maxValue);
+                      }
+                      return prev;
+                    });
+                  else setEndTime(0);
+                  setSliderValue(val);
+                }}
               >
                 <RangeSliderTrack>
                   <RangeSliderFilledTrack />
@@ -241,6 +288,10 @@ const ClipCreator: NextPage = () => {
                   index={1}
                   onMouseEnter={() => setIsShownRight(true)}
                   onMouseLeave={() => setIsShownRight(false)}
+                  onClick={() => {
+                    setStartTime(endTime);
+                    setIsBounce(true);
+                  }}
                 />
                 {isShownLeft && (
                   <RangeSliderMark
@@ -252,7 +303,7 @@ const ClipCreator: NextPage = () => {
                     ml="-6"
                     w="12"
                   >
-                    {sliderValue[0]}%
+                    {formatTime(startTime)}
                   </RangeSliderMark>
                 )}
                 {isShownRight && (
@@ -265,7 +316,7 @@ const ClipCreator: NextPage = () => {
                     ml="-6"
                     w="12"
                   >
-                    {sliderValue[1]}%
+                    {formatTime(endTime)}
                   </RangeSliderMark>
                 )}
               </RangeSlider>
