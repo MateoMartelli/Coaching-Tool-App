@@ -17,12 +17,29 @@ import {
   RangeSliderMark,
   Grid,
   Box,
+  Select,
+  Checkbox,
+  CheckboxGroup,
+  Stack,
+  Radio,
+  RadioGroup,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
+  InputGroup,
+  InputLeftElement,
+  InputRightAddon,
+  InputRightElement,
+  StackDivider,
 } from "@chakra-ui/react";
 import { Formik, Field, Form, FieldProps } from "formik";
 import LoginForm from "../components/login-form";
 import LoginRegLayout from "../layouts/login-register-layouts";
 import HomeLayout from "../layouts/home-layout";
 import ArrowButtonVertical from "../components/arrow-button-vertical";
+import { number } from "yup";
 // import ReactPlayer from "react-player";
 
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
@@ -39,16 +56,65 @@ const ClipCreator: NextPage = () => {
   const [startTime, setStartTime] = useState(0);
   const [endTime, setEndTime] = useState(duration);
   const [isBounce, setIsBounce] = useState(false);
+  const [side, setSide] = useState("");
   const handleToggleTop = () => {
     setIsActiveTop((prev) => !prev);
   };
 
-  const formatTime = (time: number) => {
-    const aux = time / 60;
-    const minutes = Math.floor(aux);
-    const seconds = Math.floor((aux - minutes) * 60);
+  const getHours = (time: number) => {
+    const aux = time / 3600;
+    const hours = Math.floor(aux);
+    return hours;
+  };
 
-    return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+  const getMinutes = (time: number) => {
+    const aux = time / 60;
+    const minutes = Math.floor(aux - getHours(time) * 60);
+    return minutes;
+  };
+
+  const getSeconds = (time: number) => {
+    const seconds = Math.floor(
+      time - getMinutes(time) * 60 - getHours(time) * 3600
+    );
+    return seconds;
+  };
+
+  const formatTime = (time: number) => {
+    const hours = getHours(time);
+    const minutes = getMinutes(time);
+    const seconds = getSeconds(time);
+    const hasHours = hours > 0;
+    const isMinLessThan10 = minutes < 10;
+    const isSecLessThan10 = seconds < 10;
+
+    const hrsDisplayed = hasHours ? `${hours}:` : "";
+
+    const minDisplayed =
+      hasHours && isMinLessThan10
+        ? `0${minutes}:`
+        : hours > 0 && !isMinLessThan10
+        ? `${minutes}:`
+        : `${minutes}:`;
+
+    const secDisplayed = isSecLessThan10 ? `0${seconds}` : `${seconds}`;
+
+    return `${hrsDisplayed}${minDisplayed}${secDisplayed}`;
+  };
+
+  const handleHrs = (prev: number, hrs: number) => {
+    const prevHrs = getHours(prev);
+    return prev - 3600 * prevHrs + 3600 * hrs;
+  };
+
+  const handleMins = (prev: number, min: number) => {
+    const prevMins = getMinutes(prev);
+    return prev - 60 * prevMins + 60 * min;
+  };
+
+  const handleSecs = (prev: number, sec: number) => {
+    const prevSecs = getSeconds(prev);
+    return prev - prevSecs + sec;
   };
 
   return (
@@ -92,7 +158,7 @@ const ClipCreator: NextPage = () => {
                 }
               >
                 <Flex
-                  marginTop="0.5rem"
+                  marginTop="0.35rem"
                   flexDir="row"
                   w="100%"
                   alignItems="center"
@@ -107,7 +173,7 @@ const ClipCreator: NextPage = () => {
                   ></Input>
                 </Flex>
                 <Flex
-                  marginTop="0.5rem"
+                  marginTop="0.35rem"
                   flexDir="row"
                   w="100%"
                   alignItems="center"
@@ -136,7 +202,7 @@ const ClipCreator: NextPage = () => {
                   ></Input>
                 </Flex>
                 <Flex
-                  marginTop="0.5rem"
+                  marginTop="0.35rem"
                   flexDir="row"
                   w="100%"
                   justify="space-between"
@@ -301,7 +367,7 @@ const ClipCreator: NextPage = () => {
                     color="white"
                     mt="-9"
                     ml="-6"
-                    w="12"
+                    w="4rem"
                   >
                     {formatTime(startTime)}
                   </RangeSliderMark>
@@ -314,7 +380,7 @@ const ClipCreator: NextPage = () => {
                     color="white"
                     mt="-9"
                     ml="-6"
-                    w="12"
+                    w="4rem"
                   >
                     {formatTime(endTime)}
                   </RangeSliderMark>
@@ -323,7 +389,242 @@ const ClipCreator: NextPage = () => {
             </Flex>
           </Flex>
         </Flex>
-        <Flex w="100%" gridColumn="2 / 3" bgColor="blue"></Flex>
+        <Flex
+          w="100%"
+          gridColumn="2 / 3"
+          bgColor="lightMode.trueIce2"
+          color="white"
+          marginBlock="3px"
+          borderLeftRadius="8px"
+          borderWidth="3px"
+          borderColor="lightMode.trueIce1"
+          flexDir="column"
+          align="center"
+        >
+          <Text fontSize="2rem" fontWeight="bold" marginTop="2rem">
+            CLIP SETTINGS
+          </Text>
+          <Flex flexDir="row" w="95%" justify="center" marginTop="4rem">
+            <Text fontSize="1.2rem" marginRight="0.5rem">
+              Tag
+            </Text>
+            <Select h="1.8rem"></Select>
+          </Flex>
+          <Flex
+            flexDir="row"
+            w="100%"
+            justify="space-evenly"
+            marginTop="2rem"
+            align="baseline"
+          >
+            <Flex flexDir="column" marginRight="2.5rem" align="center">
+              <Text
+                fontSize="1.25rem"
+                fontWeight="bold"
+                marginRight="0.5rem"
+                marginBottom="0.5rem"
+              >
+                SIDE
+              </Text>
+
+              <RadioGroup onChange={setSide} value={side}>
+                <Stack direction="row" spacing={3}>
+                  <Radio value="blue" colorScheme="blue">
+                    Blue
+                  </Radio>
+                  <Radio value="red" colorScheme="red">
+                    Red
+                  </Radio>
+                </Stack>
+              </RadioGroup>
+            </Flex>
+            <Flex
+              flexDir="column"
+              marginRight="1rem"
+              marginTop="1.5rem"
+              align="center"
+            >
+              <Text
+                fontSize="1.25rem"
+                marginRight="0.5rem"
+                fontWeight="bold"
+                marginBottom="0.5rem"
+              >
+                ERROR
+              </Text>
+              <Checkbox></Checkbox>
+            </Flex>
+          </Flex>
+          <Flex flexDir="column" w="100%" align="center" marginTop="1.5rem">
+            <Flex flexDir="column" w="100%" align="center">
+              <Text
+                fontSize="1.25rem"
+                marginRight="0.5rem"
+                fontWeight="bold"
+                marginBottom="0.5rem"
+              >
+                LANE
+              </Text>
+              <Flex flexDir="column" align="center">
+                <CheckboxGroup>
+                  <Stack spacing={[1, 10]} direction={["column", "row"]}>
+                    <Checkbox value="top">TOP</Checkbox>
+                    <Checkbox value="jg">JG</Checkbox>
+                    <Checkbox value="mid">MID</Checkbox>
+                  </Stack>
+                  <Stack spacing={[1, 10]} direction={["column", "row"]}>
+                    <Checkbox value="adc">ADC</Checkbox>
+                    <Checkbox value="supp">SUPP</Checkbox>
+                  </Stack>
+                </CheckboxGroup>
+              </Flex>
+            </Flex>
+          </Flex>
+          <Flex flexDir="row" w="100%" justify="space-around" marginTop="1rem">
+            <Flex flexDir="column" align="center">
+              <Text marginBottom="0.5rem">Start Time</Text>
+              <Stack
+                direction="row"
+                spacing="0"
+                border="1px solid white"
+                borderRadius="8px"
+                h="2.37rem"
+                divider={
+                  <StackDivider
+                    borderColor="transparent"
+                    alignSelf="center"
+                    fontSize="1.2rem"
+                    position="relative"
+                  >
+                    :
+                  </StackDivider>
+                }
+              >
+                <Input
+                  w="2.2rem"
+                  border="none"
+                  p="3px"
+                  textAlign="center"
+                  verticalAlign="middle"
+                  _focusVisible={{
+                    border: "none",
+                  }}
+                  type="number"
+                  onChange={({ target }) => {
+                    setStartTime((prev) =>
+                      handleHrs(prev, +target.value)
+                    ); /* casteo tranfuga parse int implicito + adelante */
+                  }}
+                  value={getHours(startTime)}
+                />
+                <Input
+                  w="2.2rem"
+                  border="none"
+                  p="3px"
+                  textAlign="center"
+                  _focusVisible={{
+                    border: "none",
+                  }}
+                  type="number"
+                  onChange={({ target }) => {
+                    setStartTime((prev) => {
+                      const newTime = handleMins(prev, +target.value);
+                      setSliderValue((prev) => [(prev[0] = newTime), prev[1]]);
+                      return newTime;
+                    }); /* casteo tranfuga parse int implicito + adelante */
+                  }}
+                  value={getMinutes(startTime)}
+                />
+                <Input
+                  w="2.2rem"
+                  border="none"
+                  p="3px"
+                  textAlign="center"
+                  _focusVisible={{
+                    border: "none",
+                  }}
+                  type="number"
+                  onChange={({ target }) => {
+                    setStartTime((prev) =>
+                      handleSecs(prev, +target.value)
+                    ); /* casteo tranfuga parse int implicito + adelante */
+                  }}
+                  value={getSeconds(startTime)}
+                />
+              </Stack>
+            </Flex>
+            <Flex flexDir="column" align="center">
+              <Text marginBottom="0.5rem">End Time</Text>
+              <Stack
+                direction="row"
+                spacing="0"
+                border="1px solid white"
+                borderRadius="8px"
+                h="2.37rem"
+                divider={
+                  <StackDivider
+                    borderColor="transparent"
+                    alignSelf="center"
+                    fontSize="1.2rem"
+                    position="relative"
+                  >
+                    :
+                  </StackDivider>
+                }
+              >
+                <Input
+                  w="2.2rem"
+                  border="none"
+                  p="3px"
+                  textAlign="center"
+                  verticalAlign="middle"
+                  _focusVisible={{
+                    border: "none",
+                  }}
+                  type="number"
+                  onChange={({ target }) => {
+                    setEndTime((prev) =>
+                      handleHrs(prev, +target.value)
+                    ); /* casteo tranfuga parse int implicito + adelante */
+                  }}
+                  value={getHours(endTime)}
+                />
+                <Input
+                  w="2.2rem"
+                  border="none"
+                  p="3px"
+                  textAlign="center"
+                  _focusVisible={{
+                    border: "none",
+                  }}
+                  type="number"
+                  onChange={({ target }) => {
+                    setEndTime((prev) =>
+                      handleMins(prev, +target.value)
+                    ); /* casteo tranfuga parse int implicito + adelante */
+                  }}
+                  value={getMinutes(endTime)}
+                />
+                <Input
+                  w="2.2rem"
+                  border="none"
+                  p="3px"
+                  textAlign="center"
+                  _focusVisible={{
+                    border: "none",
+                  }}
+                  type="number"
+                  onChange={({ target }) => {
+                    setEndTime((prev) =>
+                      handleSecs(prev, +target.value)
+                    ); /* casteo tranfuga parse int implicito + adelante */
+                  }}
+                  value={getSeconds(endTime)}
+                />
+              </Stack>
+            </Flex>
+          </Flex>
+        </Flex>
       </Grid>
       {/* <Flex w="100%" h="100%" flexDir="row">
         <Flex h="100%" flexDir="column" w="1000px" paddingLeft="5px">
